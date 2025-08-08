@@ -1,42 +1,49 @@
 import React, { useState } from 'react';
 import './ChildSupportSection.css';
-import child01 from '../assets/child01.svg';
-import child02 from '../assets/child02.svg';
-import child03 from '../assets/child03.svg';
-import child04 from '../assets/child04.svg';
+import child00 from '../assets/child-support-section/child/child-00.png';
+import childEat from '../assets/child-support-section/child/child-eat.png';
+import childToy from '../assets/child-support-section/child/child-toy.png';
+import childBag from '../assets/child-support-section/child/child-bag.png';
+import childEatToy from '../assets/child-support-section/child/chil-eat-toy.png';
+import childToyBag from '../assets/child-support-section/child/child-toy-bag.png';
+import childToyEatBag from '../assets/child-support-section/child/child-toy-eat-bag.png';
+import foodIcon from '../assets/child-support-section/elements/food.png';
+import toyIcon from '../assets/child-support-section/elements/toy.png';
+import bagIcon from '../assets/child-support-section/elements/bag.png';
+import clothesIcon from '../assets/child-support-section/elements/clothes .png';
 
 const products = [
   {
     key: 'food',
     name: 'Yemek',
     price: 180,
-    img: 'https://cdn-icons-png.flaticon.com/512/1046/1046857.png',
-    childImg: child02, // yemek
+    img: foodIcon,
+    childImg: childEat, // yemek
   },
   {
     key: 'toy',
     name: 'Oyuncak',
     price: 150,
-    img: 'https://cdn-icons-png.flaticon.com/512/3075/3075977.png',
-    childImg: child03, // oyuncak
+    img: toyIcon,
+    childImg: childToy, // oyuncak
   },
   {
     key: 'stationery',
     name: 'Kırtasiye',
     price: 150,
-    img: 'https://cdn-icons-png.flaticon.com/512/2921/2921822.png',
-    childImg: child04, // kırtasiye
+    img: bagIcon,
+    childImg: childBag, // kırtasiye
   },
   {
     key: 'clothes',
     name: 'Giyecek',
     price: 250,
-    img: 'https://cdn-icons-png.flaticon.com/512/892/892458.png',
-    childImg: child04, // giyecek
+    img: clothesIcon,
+    childImg: child00, // giyecek (varsayılan)
   },
 ];
 
-const defaultChildImg = child01;
+const defaultChildImg = child00;
 
 const ChildSupportSection = () => {
   const [counts, setCounts] = useState({ food: 0, toy: 0, stationery: 0, clothes: 0 });
@@ -52,7 +59,35 @@ const ChildSupportSection = () => {
   };
 
   const total = products.reduce((sum, p) => sum + counts[p.key] * p.price, 0);
-  const childImg = lastAdded ? (products.find(p => p.key === lastAdded)?.childImg || defaultChildImg) : defaultChildImg;
+  
+  // Çocuk görselini seçilen ürünlere göre belirle
+  const getChildImage = () => {
+    const selectedProducts = Object.keys(counts).filter(key => counts[key] > 0);
+    
+    if (selectedProducts.length === 0) {
+      return defaultChildImg;
+    }
+    
+    if (selectedProducts.length === 1) {
+      const product = products.find(p => p.key === selectedProducts[0]);
+      return product?.childImg || defaultChildImg;
+    }
+    
+    // Birden fazla ürün seçildiğinde kombinasyon görsellerini kullan
+    if (selectedProducts.includes('food') && selectedProducts.includes('toy') && selectedProducts.includes('stationery')) {
+      return childToyEatBag;
+    } else if (selectedProducts.includes('toy') && selectedProducts.includes('stationery')) {
+      return childToyBag;
+    } else if (selectedProducts.includes('food') && selectedProducts.includes('toy')) {
+      return childEatToy;
+    } else {
+      // İlk seçilen ürünün görselini göster
+      const firstProduct = products.find(p => p.key === selectedProducts[0]);
+      return firstProduct?.childImg || defaultChildImg;
+    }
+  };
+  
+  const childImg = getChildImage();
 
   return (
     <section className="child-support-section">
@@ -62,26 +97,30 @@ const ChildSupportSection = () => {
         <div className="child-support-col">
           <div className="child-support-card">
             <img src={products[0].img} alt="Yemek" />
-            <div className="child-support-label-row">
-              <span className="child-support-label">Yemek</span>
-              <span className="child-support-price">180₺</span>
-            </div>
-            <div className="child-support-qty-row">
-              <button onClick={() => handleChange('food', -1)}>-</button>
-              <span>{counts.food}</span>
-              <button onClick={() => handleChange('food', 1)}>+</button>
+            <div className="child-support-card-content">
+              <div className="child-support-label-row">
+                <span className="child-support-label">Yemek</span>
+                <span className="child-support-price">180₺</span>
+              </div>
+              <div className="child-support-qty-row">
+                <button onClick={() => handleChange('food', -1)}>-</button>
+                <span>{counts.food}</span>
+                <button onClick={() => handleChange('food', 1)}>+</button>
+              </div>
             </div>
           </div>
           <div className="child-support-card">
             <img src={products[2].img} alt="Kırtasiye" />
-            <div className="child-support-label-row">
-              <span className="child-support-label">Kırtasiye</span>
-              <span className="child-support-price">150₺</span>
-            </div>
-            <div className="child-support-qty-row">
-              <button onClick={() => handleChange('stationery', -1)}>-</button>
-              <span>{counts.stationery}</span>
-              <button onClick={() => handleChange('stationery', 1)}>+</button>
+            <div className="child-support-card-content">
+              <div className="child-support-label-row">
+                <span className="child-support-label">Kırtasiye</span>
+                <span className="child-support-price">150₺</span>
+              </div>
+              <div className="child-support-qty-row">
+                <button onClick={() => handleChange('stationery', -1)}>-</button>
+                <span>{counts.stationery}</span>
+                <button onClick={() => handleChange('stationery', 1)}>+</button>
+              </div>
             </div>
           </div>
         </div>
@@ -93,26 +132,30 @@ const ChildSupportSection = () => {
         <div className="child-support-col">
           <div className="child-support-card">
             <img src={products[1].img} alt="Oyuncak" />
-            <div className="child-support-label-row">
-              <span className="child-support-label">Oyuncak</span>
-              <span className="child-support-price">150₺</span>
-            </div>
-            <div className="child-support-qty-row">
-              <button onClick={() => handleChange('toy', -1)}>-</button>
-              <span>{counts.toy}</span>
-              <button onClick={() => handleChange('toy', 1)}>+</button>
+            <div className="child-support-card-content">
+              <div className="child-support-label-row">
+                <span className="child-support-label">Oyuncak</span>
+                <span className="child-support-price">150₺</span>
+              </div>
+              <div className="child-support-qty-row">
+                <button onClick={() => handleChange('toy', -1)}>-</button>
+                <span>{counts.toy}</span>
+                <button onClick={() => handleChange('toy', 1)}>+</button>
+              </div>
             </div>
           </div>
           <div className="child-support-card">
             <img src={products[3].img} alt="Giyecek" />
-            <div className="child-support-label-row">
-              <span className="child-support-label">Giyecek</span>
-              <span className="child-support-price">250₺</span>
-            </div>
-            <div className="child-support-qty-row">
-              <button onClick={() => handleChange('clothes', -1)}>-</button>
-              <span>{counts.clothes}</span>
-              <button onClick={() => handleChange('clothes', 1)}>+</button>
+            <div className="child-support-card-content">
+              <div className="child-support-label-row">
+                <span className="child-support-label">Giyecek</span>
+                <span className="child-support-price">250₺</span>
+              </div>
+              <div className="child-support-qty-row">
+                <button onClick={() => handleChange('clothes', -1)}>-</button>
+                <span>{counts.clothes}</span>
+                <button onClick={() => handleChange('clothes', 1)}>+</button>
+              </div>
             </div>
           </div>
         </div>

@@ -10,6 +10,31 @@
   align-items: center;
   gap: 12px;
 }
+
+.footer-actions {
+  margin: 8px 0;
+}
+
+.footer-signup-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+  color: #2c3e50;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+.footer-signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+  color: #2c3e50;
+}
 .footer-logo {
   font-size: 1.5rem;
   font-weight: 700;
