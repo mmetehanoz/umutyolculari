@@ -49,8 +49,9 @@ IBAN: TR33 0001 0002 3456 7890 1234 56`;
     <header className="navbar-header">
       <div className="navbar-topbar">
         <div className="navbar-logo-area">
-          <img src={logo} alt="Umut Yolcuları" className="navbar-logo-img" />
-          <span className="navbar-logo-text">Umut Yolcuları</span>
+          <Link to="/" className="navbar-logo-link">
+            <img src={logo} alt="Umut Yolcuları" className="navbar-logo-img" />
+          </Link>
         </div>
         <div className="navbar-info-group">
           <div className="navbar-info-box">

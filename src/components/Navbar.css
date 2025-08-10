@@ -24,20 +24,24 @@
   flex-shrink: 0;
 }
 
-.navbar-logo-img {
-  width: 54px;
-  height: 54px;
-  object-fit: contain;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(26,124,107,0.08);
+.navbar-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.2s ease;
 }
 
-.navbar-logo-text {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: #222;
-  letter-spacing: 1px;
+.navbar-logo-link:hover {
+  transform: scale(1.05);
+}
+
+.navbar-logo-img {
+  width: 286px;
+  height: 73px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: 0 2px 8px rgba(26,124,107,0.08);
 }
 
 .navbar-info-group {
@@ -380,9 +384,7 @@
     padding: 16px 32px 0 32px;
   }
   
-  .navbar-logo-text {
-    font-size: 1.8rem;
-  }
+
   
   .navbar-info-group {
     gap: 8px;
@@ -566,13 +568,11 @@
   }
   
   .navbar-logo-img {
-    width: 42px;
-    height: 42px;
+    width: 200px;
+    height: 51px;
   }
   
-  .navbar-logo-text {
-    font-size: 1.6rem;
-  }
+
   
   .navbar-menu-bar {
     margin: 12px 16px 0 16px;
@@ -625,13 +625,11 @@
   }
   
   .navbar-logo-img {
-    width: 36px;
-    height: 36px;
+    width: 160px;
+    height: 41px;
   }
   
-  .navbar-logo-text {
-    font-size: 1.4rem;
-  }
+
   
   .navbar-menu-bar {
     margin: 8px 12px 0 12px;
