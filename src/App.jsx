@@ -10,6 +10,7 @@ import FAQSection from './components/FAQSection';
 import ActiveProjectsSection from './components/ActiveProjectsSection';
 import Footer from './components/Footer';
 import ChildSupportSection from './components/ChildSupportSection';
+import BeforeAfterSection from './components/BeforeAfterSection';
 import DonationsPage from './components/DonationsPage';
 import AboutPage from './components/AboutPage';
 import VideosPage from './components/VideosPage';
@@ -23,6 +24,7 @@ function Home() {
     <>
       <Navbar />
       <HeroSection />
+      <BeforeAfterSection />
       <ChildSupportSection />
       <AboutSection />
       <DonationsSection />
