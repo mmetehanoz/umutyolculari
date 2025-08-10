@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './BeforeAfterSection.css';
 
-// Using actual assets from deployment #56
-const beforeImage = '/assets/before-01-BxFMc2yq.jpg';
-const afterImage = '/assets/after-02-uguQJT7B.JPG';
+// Using local assets
+import beforeImage from '../assets/before-01.jpg';
+import afterImage from '../assets/after-02.jpg';
 
 const BeforeAfterSection = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
