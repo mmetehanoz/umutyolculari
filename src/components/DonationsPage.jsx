@@ -239,7 +239,17 @@ const donations = [
 const DonationsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeCategory, setActiveCategory] = useState('all');
-  const [donationForms, setDonationForms] = useState({});
+  const [donationForms, setDonationForms] = useState(() => {
+    const defaultForms = {};
+    donations.forEach(donation => {
+      defaultForms[donation.id] = {
+        type: donationTypes[0],
+        country: countries[0],
+        quantity: 1
+      };
+    });
+    return defaultForms;
+  });
 
   // URL'den kategori parametresini oku
   useEffect(() => {
@@ -318,7 +328,7 @@ const DonationsPage = () => {
     // Form'u temizle
     setDonationForms(prev => ({
       ...prev,
-      [donation.id]: { type: '', country: '', quantity: '' }
+      [donation.id]: { type: donationTypes[0], country: countries[0], quantity: 1 }
     }));
 
     alert('Ürün sepete eklendi! Sepetinizi görmek için üst menüdeki sepet ikonuna tıklayın.');
@@ -369,28 +379,32 @@ const DonationsPage = () => {
                 <div className="form-row">
                   <div className="form-group">
                     <label>Bağış Türü:</label>
-                    <select 
-                      value={donationForms[don.id]?.type || ''}
-                      onChange={(e) => handleFormChange(don.id, 'type', e.target.value)}
-                    >
-                      <option value="">Seçiniz</option>
-                      {donationTypes.map(type => (
-                        <option key={type} value={type}>{type}</option>
-                      ))}
-                    </select>
+                    <div className="select-wrapper">
+                      <select 
+                        value={donationForms[don.id]?.type || donationTypes[0]}
+                        onChange={(e) => handleFormChange(don.id, 'type', e.target.value)}
+                      >
+                        {donationTypes.map(type => (
+                          <option key={type} value={type}>{type}</option>
+                        ))}
+                      </select>
+                      <i className="fas fa-chevron-down select-arrow"></i>
+                    </div>
                   </div>
                   
                   <div className="form-group">
                     <label>Ülke:</label>
-                    <select 
-                      value={donationForms[don.id]?.country || ''}
-                      onChange={(e) => handleFormChange(don.id, 'country', e.target.value)}
-                    >
-                      <option value="">Seçiniz</option>
-                      {countries.map(country => (
-                        <option key={country} value={country}>{country}</option>
-                      ))}
-                    </select>
+                    <div className="select-wrapper">
+                      <select 
+                        value={donationForms[don.id]?.country || countries[0]}
+                        onChange={(e) => handleFormChange(don.id, 'country', e.target.value)}
+                      >
+                        {countries.map(country => (
+                          <option key={country} value={country}>{country}</option>
+                        ))}
+                      </select>
+                      <i className="fas fa-chevron-down select-arrow"></i>
+                    </div>
                   </div>
                 </div>
                 
@@ -400,8 +414,8 @@ const DonationsPage = () => {
                     <input 
                       type="number" 
                       min="1"
-                      value={donationForms[don.id]?.quantity || ''}
-                      onChange={(e) => handleFormChange(don.id, 'quantity', parseInt(e.target.value) || 0)}
+                      value={donationForms[don.id]?.quantity || 1}
+                      onChange={(e) => handleFormChange(don.id, 'quantity', parseInt(e.target.value) || 1)}
                       placeholder="1"
                     />
                   </div>
