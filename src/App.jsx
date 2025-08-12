@@ -8,15 +8,19 @@ import HowToHelpSection from './components/HowToHelpSection';
 import BlogSection from './components/BlogSection';
 import FAQSection from './components/FAQSection';
 import ActiveProjectsSection from './components/ActiveProjectsSection';
+import TestimonialsSection from './components/TestimonialsSection';
 import Footer from './components/Footer';
 import ChildSupportSection from './components/ChildSupportSection';
 import BeforeAfterSection from './components/BeforeAfterSection';
+import QuickDonationSection from './components/QuickDonationSection';
 import DonationsPage from './components/DonationsPage';
 import AboutPage from './components/AboutPage';
 import VideosPage from './components/VideosPage';
 import GalleryPage from './components/GalleryPage';
 import NewsPage from './components/NewsPage';
 import SignUpPage from './components/SignUpPage';
+import LoginPage from './components/LoginPage';
+import CartPage from './components/CartPage';
 import './App.css';
 
 function Home() {
@@ -24,6 +28,7 @@ function Home() {
     <>
       <Navbar />
       <HeroSection />
+      <QuickDonationSection />
       <BeforeAfterSection />
       <ChildSupportSection />
       <AboutSection />
@@ -32,6 +37,7 @@ function Home() {
       <BlogSection />
       <FAQSection />
       <ActiveProjectsSection />
+      <TestimonialsSection />
       <Footer />
     </>
   );
@@ -48,6 +54,8 @@ function App() {
         <Route path="/press/gallery" element={<><Navbar /><GalleryPage /><Footer /></>} />
         <Route path="/press/news" element={<><Navbar /><NewsPage /><Footer /></>} />
         <Route path="/signup" element={<><Navbar /><SignUpPage /><Footer /></>} />
+        <Route path="/login" element={<><Navbar /><LoginPage /><Footer /></>} />
+        <Route path="/cart" element={<><Navbar /><CartPage /><Footer /></>} />
       </Routes>
     </HashRouter>
   );

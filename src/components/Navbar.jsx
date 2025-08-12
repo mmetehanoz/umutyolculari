@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import logo from '../assets/logo.png';
@@ -10,6 +10,34 @@ const Navbar = () => {
   const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
   const [isSearchPopupOpen, setIsSearchPopupOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [cartCount, setCartCount] = useState(0);
+
+  // Sepet sayısını güncelle
+  useEffect(() => {
+    const updateCartCount = () => {
+      const savedCart = localStorage.getItem('charityCart');
+      if (savedCart) {
+        const cart = JSON.parse(savedCart);
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        setCartCount(totalItems);
+      } else {
+        setCartCount(0);
+      }
+    };
+
+    updateCartCount();
+    
+    // localStorage değişikliklerini dinle
+    window.addEventListener('storage', updateCartCount);
+    
+    // Custom event dinle (aynı sayfa içinde localStorage güncellendiğinde)
+    window.addEventListener('cartUpdated', updateCartCount);
+    
+    return () => {
+      window.removeEventListener('storage', updateCartCount);
+      window.removeEventListener('cartUpdated', updateCartCount);
+    };
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -81,44 +109,9 @@ IBAN: TR33 0001 0002 3456 7890 1234 56`;
       </div>
       <nav className="navbar-menu-bar">
         <ul className={`navbar-menu-list ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-          <li><Link to="/" className="navbar-link" onClick={() => setIsMobileMenuOpen(false)}>Ana Sayfa <i className="fas fa-chevron-down"></i></Link></li>
+          <li><Link to="/" className="navbar-link" onClick={() => setIsMobileMenuOpen(false)}>Ana Sayfa</Link></li>
           <li><Link to="/about" className="navbar-link" onClick={() => setIsMobileMenuOpen(false)}>Hakkımızda</Link></li>
-          <li className="dropdown-menu">
-            <div className="navbar-link-container">
-              <Link to="/donations" className="navbar-link" onClick={() => setIsMobileMenuOpen(false)}>Bağışlar</Link>
-              <span className="dropdown-toggle"><i className="fas fa-chevron-down"></i></span>
-            </div>
-            <div className="dropdown-content">
-              <Link to="/donations" onClick={() => setIsMobileMenuOpen(false)}>
-                <i className="fas fa-th-large"></i>
-                <span>Tüm Bağışlar</span>
-              </Link>
-              <Link to="/donations?category=kurban" onClick={() => setIsMobileMenuOpen(false)}>
-                <i className="fas fa-cow"></i>
-                <span>Kurban</span>
-              </Link>
-              <Link to="/donations?category=gida" onClick={() => setIsMobileMenuOpen(false)}>
-                <i className="fas fa-shopping-basket"></i>
-                <span>Gıda/Yemek</span>
-              </Link>
-              <Link to="/donations?category=genel" onClick={() => setIsMobileMenuOpen(false)}>
-                <i className="fas fa-hands-helping"></i>
-                <span>Genel Bağış</span>
-              </Link>
-              <Link to="/donations?category=su" onClick={() => setIsMobileMenuOpen(false)}>
-                <i className="fas fa-tint"></i>
-                <span>Su Kuyusu</span>
-              </Link>
-              <Link to="/donations?category=nakit" onClick={() => setIsMobileMenuOpen(false)}>
-                <i className="fas fa-money-bill-wave"></i>
-                <span>Nakit Yardımı</span>
-              </Link>
-              <Link to="/donations?category=acil" onClick={() => setIsMobileMenuOpen(false)}>
-                <i className="fas fa-first-aid"></i>
-                <span>Acil Yardımlar</span>
-              </Link>
-            </div>
-          </li>
+
           <li className="dropdown-menu">
             <span className="navbar-link">Basın <i className="fas fa-chevron-down"></i></span>
             <div className="dropdown-content">
@@ -179,14 +172,15 @@ IBAN: TR33 0001 0002 3456 7890 1234 56`;
               </div>
             )}
           </div>
-          <button className="navbar-menu-btn cart">
+          <button className="navbar-menu-btn cart" onClick={() => navigate('/cart')}>
             <i className="fas fa-shopping-cart"></i>
-            <span className="cart-count">0</span>
+            <span className="cart-count">{cartCount}</span>
           </button>
-          <button className="navbar-menu-btn signup" onClick={() => navigate('/signup')}>
-            <i className="fas fa-user-plus"></i> <span>Üye Ol</span>
+
+          <button className="navbar-menu-btn login" onClick={() => navigate('/login')}>
+            <i className="fas fa-sign-in-alt"></i> <span>Üye Girişi</span>
           </button>
-          <button className="navbar-menu-btn donate">
+          <button className="navbar-menu-btn donate" onClick={() => navigate('/donations')}>
             <i className="fas fa-heart"></i> <span>Bağış Yap</span>
           </button>
           <div className="account-popup-container">

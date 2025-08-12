@@ -29,7 +29,7 @@ const donations = [
   {
     id: 1,
     title: 'Kurban Bağışı Kampanyası',
-    desc: 'İhtiyaç sahiplerine kurban eti dağıtımı için bağış kampanyası',
+    desc: 'İhtiyaç sahiplerine kurban eti dağıtımı için bağış',
     img: child01,
     percent: 82.89,
     raised: 41444,
@@ -280,6 +280,50 @@ const DonationsPage = () => {
     return form.quantity * donation.price;
   };
 
+  // Sepete ekleme fonksiyonu
+  const addToCart = (donation) => {
+    const formData = donationForms[donation.id];
+    if (!formData || !formData.type || !formData.country || !formData.quantity) {
+      alert('Lütfen tüm alanları doldurun.');
+      return;
+    }
+
+    // Sepet verilerini localStorage'a kaydet
+    const cartItem = {
+      id: donation.id,
+      name: donation.title,
+      description: donation.desc,
+      price: donation.price,
+      quantity: formData.quantity,
+      type: formData.type,
+      country: formData.country,
+      image: donation.img,
+      category: donation.category
+    };
+
+    const existingCart = JSON.parse(localStorage.getItem('charityCart') || '[]');
+    const existingItemIndex = existingCart.findIndex(item => item.id === donation.id);
+    
+    if (existingItemIndex > -1) {
+      existingCart[existingItemIndex].quantity += formData.quantity;
+    } else {
+      existingCart.push(cartItem);
+    }
+
+    localStorage.setItem('charityCart', JSON.stringify(existingCart));
+    
+    // Navbar'daki sepet sayısını güncelle
+    window.dispatchEvent(new Event('cartUpdated'));
+    
+    // Form'u temizle
+    setDonationForms(prev => ({
+      ...prev,
+      [donation.id]: { type: '', country: '', quantity: '' }
+    }));
+
+    alert('Ürün sepete eklendi! Sepetinizi görmek için üst menüdeki sepet ikonuna tıklayın.');
+  };
+
   return (
     <section className="donations-page-section">
       <div className="donations-page-header">
@@ -362,9 +406,11 @@ const DonationsPage = () => {
                     />
                   </div>
                   
-                  <div className="price-display">
-                    <span className="price-label">Fiyat:</span>
-                    <span className="price-value">₺{don.price.toLocaleString()}</span>
+                  <div className="form-group">
+                    <label>Fiyat:</label>
+                    <div className="price-display">
+                      <span className="price-value">₺{don.price.toLocaleString()}</span>
+                    </div>
                   </div>
                 </div>
                 
@@ -373,8 +419,8 @@ const DonationsPage = () => {
                   <span className="total-value">₺{calculateTotal(don.id).toLocaleString()}</span>
                 </div>
                 
-                <button className="donations-page-btn">
-                  Şimdi Bağış Yap <i className="fas fa-arrow-right"></i>
+                <button className="donations-page-btn" onClick={() => addToCart(don)}>
+                  <i className="fas fa-shopping-cart"></i> Sepete Ekle
                 </button>
               </div>
             </div>
