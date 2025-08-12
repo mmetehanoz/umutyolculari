@@ -17,7 +17,7 @@ const categories = [
 ];
 
 const donationTypes = [
-  'akika', 'adak', 'sadaka', 'şükür', 'şifa', 'nafile', 'hayır', 'Allah rızası için'
+  'Akika', 'Adak', 'Sadaka', 'Şükür', 'Şifa', 'Nafile', 'Hayır', 'Allah Rızası İçin'
 ];
 
 const countries = [
