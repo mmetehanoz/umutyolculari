@@ -1,7 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HeroSection.css';
+import slider01 from '../assets/slider-01.webp';
 
 const slides = [
+  {
+    id: 0,
+    title: "Umut Yolcuları",
+    subtitle: "Hayırseverlik Vakfı",
+    category: "Ana Sayfa",
+    icon: "fas fa-heart",
+    description: "İhtiyaç sahiplerine yardım eli uzatıyor, dünyanın her yerinde insani yardım projeleri gerçekleştiriyoruz.",
+    image: slider01,
+    buttonText: "Bağış Yap",
+    buttonSecondary: "Hakkımızda",
+    donationId: "genel"
+  },
   {
     id: 1,
     title: "İyiliği Göze Alın",
@@ -101,17 +115,19 @@ const slides = [
 ];
 
 const categories = [
-  { name: "Fidan", icon: "fas fa-seedling", slideIndex: 3 },
-  { name: "Su", icon: "fas fa-tint", slideIndex: 1 },
-  { name: "Katarakt", icon: "fas fa-eye", slideIndex: 0 },
-  { name: "Kriz Bölgeleri", icon: "fas fa-band-aid", slideIndex: 4 },
-  { name: "Filistin", icon: "fas fa-map-pin", slideIndex: 5 },
-  { name: "Zekat", icon: "fas fa-coins", slideIndex: 6 },
-  { name: "Türkiye", icon: "fas fa-map-marker-alt", slideIndex: 7 },
-  { name: "Eğitim", icon: "fas fa-graduation-cap", slideIndex: 2 }
+  { name: "Ana Sayfa", icon: "fas fa-heart", slideIndex: 0 },
+  { name: "Katarakt", icon: "fas fa-eye", slideIndex: 1 },
+  { name: "Su", icon: "fas fa-tint", slideIndex: 2 },
+  { name: "Eğitim", icon: "fas fa-graduation-cap", slideIndex: 3 },
+  { name: "Fidan", icon: "fas fa-seedling", slideIndex: 4 },
+  { name: "Kriz Bölgeleri", icon: "fas fa-band-aid", slideIndex: 5 },
+  { name: "Filistin", icon: "fas fa-map-pin", slideIndex: 6 },
+  { name: "Zekat", icon: "fas fa-coins", slideIndex: 7 },
+  { name: "Türkiye", icon: "fas fa-map-marker-alt", slideIndex: 8 }
 ];
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -139,8 +155,12 @@ const HeroSection = () => {
   };
 
   const handleDonationClick = (donationId) => {
-    // Bağış sayfasına yönlendirme
-    window.location.hash = `#/bagislar?campaign=${donationId}`;
+    // "genel" bağış için bağışlar sayfasına, diğerleri için campaign sayfasına
+    if (donationId === 'genel') {
+      navigate('/donations');
+    } else {
+      window.location.hash = `#/bagislar?campaign=${donationId}`;
+    }
   };
 
   return (

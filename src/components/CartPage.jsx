@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CartPage.css';
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
 
   // localStorage'dan sepet verilerini yükle
@@ -105,9 +107,12 @@ const CartPage = () => {
             </div>
             <h2>Sepetiniz Boş</h2>
             <p>Henüz sepetinize ürün eklemediniz.</p>
-            <a href="/donations" className="continue-shopping-btn">
+            <button 
+              onClick={() => navigate('/donations')} 
+              className="continue-shopping-btn"
+            >
               Bağış Yapmaya Başla
-            </a>
+            </button>
           </div>
         </div>
       </div>

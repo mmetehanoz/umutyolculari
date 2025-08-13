@@ -545,8 +545,10 @@
   transition: background 0.2s;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  width: fit-content;
+  width: 100%;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
