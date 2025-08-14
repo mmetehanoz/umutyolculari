@@ -482,7 +482,7 @@
     position: static;
     background: transparent;
     box-shadow: none;
-    padding: 20px 0 0 0;
+    padding: 20px 0 10px 0;
     gap: 12px;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -493,6 +493,8 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    position: relative;
+    z-index: 10;
   }
   
   .hero-categories::-webkit-scrollbar {
@@ -570,7 +572,7 @@
   }
   
   .hero-categories {
-    padding: 15px 0 0 0;
+    padding: 15px 0 8px 0;
     gap: 10px;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -581,6 +583,8 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    position: relative;
+    z-index: 10;
   }
   
   .hero-categories::-webkit-scrollbar {

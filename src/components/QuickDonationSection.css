@@ -177,6 +177,7 @@
 @media (max-width: 768px) {
   .quick-donation-section {
     background: transparent;
+    padding-top: 30px;
   }
   
   .quick-donation-section::before {
@@ -207,6 +208,8 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-bottom: 0;
+    position: relative;
+    z-index: 1;
   }
   
   .mobile-card-logo {
@@ -324,6 +327,7 @@
 @media (max-width: 480px) {
   .quick-donation-section {
     background: transparent;
+    padding-top: 25px;
   }
   
   .quick-donation-section::before {
