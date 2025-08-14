@@ -425,7 +425,7 @@
 @media (max-width: 768px) {
   .hero-section {
     min-height: auto;
-    margin-top: 0;
+    margin: 0 16px 0 16px;
     padding: 0;
     flex-direction: column;
     align-items: stretch;
@@ -522,6 +522,10 @@
 }
 
 @media (max-width: 480px) {
+  .hero-section {
+    margin: 0 12px 0 12px;
+  }
+  
   .mobile-cards {
     padding: 12px;
     min-height: 300px;
