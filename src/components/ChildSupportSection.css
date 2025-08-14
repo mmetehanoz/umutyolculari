@@ -40,28 +40,28 @@
 }
 
 .child-support-card {
-  background: #fafbfc;
-  border-radius: 24px;
-  box-shadow: 0 2px 12px rgba(26,124,107,0.07);
-  padding: 32px 40px 24px 40px;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 16px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 220px;
-  min-height: 220px;
+  min-width: 120px;
+  min-height: 120px;
   margin-bottom: 0;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: none;
 }
 
 .child-support-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(26,124,107,0.12);
+  transform: none;
+  box-shadow: none;
 }
 
 .child-support-card img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 18px;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 12px;
   object-fit: contain;
 }
 
@@ -69,14 +69,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100%;
+  text-align: center;
 }
 
 .child-support-label-row {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 6px;
   margin-bottom: 8px;
+  width: 100%;
 }
 
 .child-support-label {
@@ -96,8 +101,10 @@
 .child-support-qty-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   margin-top: 8px;
+  width: 100%;
 }
 
 .child-support-qty-row button {
@@ -136,14 +143,14 @@
   height: 320px;
   object-fit: contain;
   margin-bottom: 20px;
-  border-radius: 24px;
-  box-shadow: 0 4px 24px rgba(26,124,107,0.08);
-  background: #f7faf9;
-  transition: transform 0.2s;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  transition: none;
 }
 
 .child-support-main-img:hover {
-  transform: scale(1.02);
+  transform: none;
 }
 
 .child-support-total {
@@ -307,37 +314,52 @@
   }
   
   .child-support-grid {
-    gap: 24px;
-    padding: 0 16px;
+    gap: 16px;
+    padding: 0 12px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
   }
   
   .child-support-col {
     gap: 16px;
+    flex: 0 0 auto;
+    width: auto;
+  }
+  
+  .child-support-col:first-child {
+    order: 1;
+  }
+  
+  .child-support-col:last-child {
+    order: 3;
   }
   
   .child-support-card {
-    min-width: 160px;
-    min-height: 160px;
-    padding: 20px 16px 12px 16px;
+    min-width: 110px;
+    min-height: 110px;
+    padding: 14px 10px;
   }
   
   .child-support-card img {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 12px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
   }
   
   .child-support-label {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .child-support-price {
-    font-size: 0.9rem;
-    padding: 1px 8px;
+    font-size: 0.8rem;
+    padding: 2px 8px;
   }
   
   .child-support-qty-row {
     gap: 12px;
+    justify-content: center;
   }
   
   .child-support-qty-row button {
@@ -347,7 +369,9 @@
   }
   
   .child-support-center {
-    min-width: 240px;
+    min-width: 200px;
+    flex: 0 0 auto;
+    order: 2;
   }
   
   .child-support-main-img {
@@ -382,32 +406,44 @@
   }
   
   .child-support-grid {
-    gap: 20px;
-    padding: 0 12px;
+    gap: 12px;
+    padding: 0 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
   }
   
   .child-support-col {
     flex-direction: column;
     gap: 12px;
-    width: 100%;
-    max-width: 320px;
+    flex: 0 0 auto;
+    width: auto;
+  }
+  
+  .child-support-col:first-child {
+    order: 1;
+  }
+  
+  .child-support-col:last-child {
+    order: 3;
   }
   
   .child-support-card {
-    min-width: auto;
-    min-height: 140px;
-    padding: 16px 12px 10px 12px;
-    flex-direction: row;
-    justify-content: space-between;
+    min-width: 100px;
+    min-height: 100px;
+    padding: 10px 8px;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    text-align: left;
+    text-align: center;
   }
   
   .child-support-card img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 0;
-    margin-right: 16px;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 6px;
+    margin-right: 0;
   }
   
   .child-support-card-content {
@@ -422,17 +458,18 @@
   }
   
   .child-support-label {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
   }
   
   .child-support-price {
-    font-size: 0.85rem;
-    padding: 1px 6px;
+    font-size: 0.75rem;
+    padding: 2px 6px;
   }
   
   .child-support-qty-row {
     gap: 8px;
     margin-top: 4px;
+    justify-content: center;
   }
   
   .child-support-qty-row button {
@@ -442,8 +479,9 @@
   }
   
   .child-support-center {
-    min-width: 200px;
-    order: -1;
+    min-width: 160px;
+    flex: 0 0 auto;
+    order: 2;
   }
   
   .child-support-main-img {
@@ -479,43 +517,64 @@
   }
   
   .child-support-grid {
-    gap: 16px;
-    padding: 0 8px;
+    gap: 10px;
+    padding: 0 6px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
   }
   
   .child-support-card {
-    min-height: 120px;
-    padding: 12px 10px 8px 10px;
+    min-height: 90px;
+    min-width: 90px;
+    padding: 8px 6px;
   }
   
   .child-support-card img {
-    width: 50px;
-    height: 50px;
-    margin-right: 12px;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 5px;
   }
   
   .child-support-label {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
   
   .child-support-price {
-    font-size: 0.8rem;
-    padding: 1px 4px;
+    font-size: 0.7rem;
+    padding: 2px 4px;
   }
   
   .child-support-qty-row button {
     width: 22px;
     height: 22px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   
   .child-support-center {
-    min-width: 180px;
+    min-width: 140px;
+    flex: 0 0 auto;
+    order: 2;
+  }
+  
+  .child-support-col {
+    flex: 0 0 auto;
+    width: auto;
+    gap: 12px;
+  }
+  
+  .child-support-col:first-child {
+    order: 1;
+  }
+  
+  .child-support-col:last-child {
+    order: 3;
   }
   
   .child-support-main-img {
-    width: 140px;
-    height: 160px;
+    width: 100px;
+    height: 120px;
   }
   
   .child-support-total {
