@@ -11,8 +11,6 @@ const UserDashboard = () => {
     name: 'Metehan Öztürk',
     role: 'Hesabınızı Yönetin',
     totalDonations: 11798.00,
-    groupDonations: 0.00,
-    corporateDonations: 0.00,
     smsDonations: 4,
     sacrificeShares: 0,
     katarakt: 0,
@@ -76,61 +74,50 @@ const UserDashboard = () => {
               <h3>BİREYSEL BAĞIŞLARIM</h3>
               <div className="stat-amount">₺{userData.totalDonations.toLocaleString()}</div>
             </div>
-            <div className="stat-card">
-              <h3>GRUP BAĞIŞLARIM</h3>
-              <div className="stat-amount">₺{userData.groupDonations.toFixed(2)}</div>
-            </div>
-            <div className="stat-card">
-              <h3>KURUMSAL BAĞIŞLARIM</h3>
-              <div className="stat-amount">₺{userData.corporateDonations.toFixed(2)}</div>
-            </div>
           </div>
 
-          <div className="stats-grid secondary">
-            <div className="stat-card small">
+          <div className="stats-grid">
+            <div className="stat-card">
               <div className="stat-icon">
                 <i className="fas fa-sms"></i>
               </div>
-              <h4>SMS BAĞIŞLARIM</h4>
-              <div className="stat-number">{userData.smsDonations} Adet</div>
+              <h3>SMS BAĞIŞLARIM</h3>
+              <div className="stat-amount">{userData.smsDonations} Adet</div>
             </div>
-            <div className="stat-card small">
+            <div className="stat-card">
               <div className="stat-icon">
                 <i className="fas fa-moon"></i>
               </div>
-              <h4>KURBAN HİSSELERİM</h4>
-              <div className="stat-number">{userData.sacrificeShares} Hisse</div>
+              <h3>KURBAN HİSSELERİM</h3>
+              <div className="stat-amount">{userData.sacrificeShares} Hisse</div>
             </div>
-            <div className="stat-card small">
+            <div className="stat-card">
               <div className="stat-icon">
                 <i className="fas fa-handshake"></i>
               </div>
-              <h4>IYD BAĞIŞLARIM</h4>
-              <div className="stat-number">₺{userData.iydDonations.toFixed(2)}</div>
+              <h3>IYD BAĞIŞLARIM</h3>
+              <div className="stat-amount">₺{userData.iydDonations.toFixed(2)}</div>
             </div>
-          </div>
-
-          <div className="stats-grid secondary">
-            <div className="stat-card small">
+            <div className="stat-card">
               <div className="stat-icon">
                 <i className="fas fa-eye"></i>
               </div>
-              <h4>KATARAKT</h4>
-              <div className="stat-number">{userData.katarakt} Tedavi</div>
+              <h3>KATARAKT</h3>
+              <div className="stat-amount">{userData.katarakt} Tedavi</div>
             </div>
-            <div className="stat-card small">
+            <div className="stat-card">
               <div className="stat-icon">
                 <i className="fas fa-smile"></i>
               </div>
-              <h4>YETİM</h4>
-              <div className="stat-number">{userData.yetim} Yetim</div>
+              <h3>YETİM</h3>
+              <div className="stat-amount">{userData.yetim} Yetim</div>
             </div>
-            <div className="stat-card small">
+            <div className="stat-card">
               <div className="stat-icon">
                 <i className="fas fa-calendar-alt"></i>
               </div>
-              <h4>DÜZENLİ BAĞIŞ</h4>
-              <div className="stat-number">{userData.duzenliDonations} Talimat</div>
+              <h3>DÜZENLİ BAĞIŞ</h3>
+              <div className="stat-amount">{userData.duzenliDonations} Talimat</div>
             </div>
           </div>
 

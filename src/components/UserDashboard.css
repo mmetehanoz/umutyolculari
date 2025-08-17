@@ -8,7 +8,6 @@
   display: flex;
   max-width: 1400px;
   margin: 0 auto;
-  min-height: calc(100vh - 80px);
   background: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -20,8 +19,6 @@
   border-right: 1px solid #e8eaed;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 80px);
-  overflow-y: auto;
 }
 
 .sidebar-menu {
@@ -92,8 +89,6 @@
 .dashboard-main {
   flex: 1;
   background: #f8f9fa;
-  overflow-y: auto;
-  height: calc(100vh - 80px);
 }
 
 .dashboard-main-content {
@@ -146,12 +141,8 @@
   margin-bottom: 30px;
 }
 
-.stats-grid:first-of-type {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-.stats-grid.secondary {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 /* Stat Cards */
@@ -192,14 +183,11 @@
   margin: 0;
 }
 
-.stat-card.small {
-  padding: 20px;
-  text-align: center;
-}
+
 
 .stat-icon {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   background: linear-gradient(135deg, #1a7c6b, #2d9687);
   border-radius: 12px;
   display: flex;
@@ -207,22 +195,16 @@
   justify-content: center;
   margin: 0 auto 16px auto;
   color: white;
-  font-size: 1.4rem;
-}
-
-.stat-card h4 {
-  margin: 0 0 12px 0;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #666;
-  letter-spacing: 0.5px;
-}
-
-.stat-number {
   font-size: 1.6rem;
-  font-weight: 700;
-  color: #1a7c6b;
-  margin: 0;
+}
+
+.stat-card:has(.stat-icon) {
+  text-align: center;
+}
+
+.stat-card:has(.stat-icon) h3 {
+  color: #666;
+  opacity: 1;
 }
 
 /* Recent Donations */
@@ -345,10 +327,6 @@
     background: #1a7c6b;
     color: white;
   }
-  
-  .dashboard-main {
-    height: auto;
-  }
 }
 
 @media (max-width: 768px) {
@@ -376,20 +354,22 @@
     font-size: 1.5rem;
   }
   
-  .stats-grid {
+    .stats-grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
-  
+
   .stat-card {
     padding: 20px;
   }
-  
+
   .stat-amount {
     font-size: 1.8rem;
   }
-  
-  .stat-number {
+
+  .stat-icon {
+    width: 50px;
+    height: 50px;
     font-size: 1.4rem;
   }
   
