@@ -21,6 +21,7 @@ import NewsPage from './components/NewsPage';
 import SignUpPage from './components/SignUpPage';
 import LoginPage from './components/LoginPage';
 import CartPage from './components/CartPage';
+import UserDashboard from './components/UserDashboard';
 import './App.css';
 
 function Home() {
@@ -56,6 +57,7 @@ function App() {
         <Route path="/signup" element={<><Navbar /><SignUpPage /><Footer /></>} />
         <Route path="/login" element={<><Navbar /><LoginPage /><Footer /></>} />
         <Route path="/cart" element={<><Navbar /><CartPage /><Footer /></>} />
+        <Route path="/dashboard" element={<><Navbar /><UserDashboard /><Footer /></>} />
       </Routes>
     </HashRouter>
   );

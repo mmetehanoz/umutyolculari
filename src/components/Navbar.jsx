@@ -11,6 +11,7 @@ const Navbar = () => {
   const [isSearchPopupOpen, setIsSearchPopupOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [cartCount, setCartCount] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // Sepet sayısını güncelle
   useEffect(() => {
@@ -25,17 +26,27 @@ const Navbar = () => {
       }
     };
 
+    const updateLoginStatus = () => {
+      const loginStatus = localStorage.getItem('isLoggedIn');
+      setIsLoggedIn(loginStatus === 'true');
+    };
+
     updateCartCount();
+    updateLoginStatus();
     
     // localStorage değişikliklerini dinle
     window.addEventListener('storage', updateCartCount);
+    window.addEventListener('storage', updateLoginStatus);
     
     // Custom event dinle (aynı sayfa içinde localStorage güncellendiğinde)
     window.addEventListener('cartUpdated', updateCartCount);
+    window.addEventListener('loginStatusChanged', updateLoginStatus);
     
     return () => {
       window.removeEventListener('storage', updateCartCount);
       window.removeEventListener('cartUpdated', updateCartCount);
+      window.removeEventListener('storage', updateLoginStatus);
+      window.removeEventListener('loginStatusChanged', updateLoginStatus);
     };
   }, []);
 
@@ -177,9 +188,15 @@ IBAN: TR33 0001 0002 3456 7890 1234 56`;
             <span className="cart-count">{cartCount}</span>
           </button>
 
-          <button className="navbar-menu-btn login" onClick={() => navigate('/login')}>
-            <i className="fas fa-sign-in-alt"></i> <span>Üye Girişi</span>
-          </button>
+          {isLoggedIn ? (
+            <button className="navbar-menu-btn login" onClick={() => navigate('/dashboard')}>
+              <i className="fas fa-user"></i> <span>Hesabım</span>
+            </button>
+          ) : (
+            <button className="navbar-menu-btn login" onClick={() => navigate('/login')}>
+              <i className="fas fa-sign-in-alt"></i> <span>Üye Girişi</span>
+            </button>
+          )}
           <button className="navbar-menu-btn donate" onClick={() => navigate('/donations')}>
             <i className="fas fa-heart"></i> <span>Bağış Yap</span>
           </button>

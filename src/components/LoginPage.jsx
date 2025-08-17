@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('login');
   const [showAgreementPopup, setShowAgreementPopup] = useState(false);
   const [showPrivacyPopup, setShowPrivacyPopup] = useState(false);
@@ -116,7 +118,19 @@ const LoginPage = () => {
     if (validateLoginForm()) {
       // Giriş işlemi burada yapılacak
       console.log('Login data:', loginFormData);
+      
+      // Mock authentication - gerçek uygulamada API çağrısı yapılacak
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('userData', JSON.stringify({
+        name: 'Metehan Öztürk',
+        email: loginFormData.email
+      }));
+      
+      // Navbar'ı güncelle
+      window.dispatchEvent(new Event('loginStatusChanged'));
+      
       alert('Başarıyla giriş yapıldı!');
+      navigate('/dashboard');
     }
   };
 
