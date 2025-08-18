@@ -5,7 +5,7 @@ import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import DonationsSection from './components/DonationsSection';
 import HowToHelpSection from './components/HowToHelpSection';
-import BlogSection from './components/BlogSection';
+import BilgiSection from './components/BlogSection';
 import FAQSection from './components/FAQSection';
 import ActiveProjectsSection from './components/ActiveProjectsSection';
 import TestimonialsSection from './components/TestimonialsSection';
@@ -22,6 +22,8 @@ import SignUpPage from './components/SignUpPage';
 import LoginPage from './components/LoginPage';
 import CartPage from './components/CartPage';
 import UserDashboard from './components/UserDashboard';
+import ZekatPage from './components/ZekatPage';
+import FitrePage from './components/FitrePage';
 import './App.css';
 
 function Home() {
@@ -35,7 +37,7 @@ function Home() {
       <AboutSection />
       <DonationsSection />
       <HowToHelpSection />
-      <BlogSection />
+      <BilgiSection />
       <FAQSection />
       <ActiveProjectsSection />
       <TestimonialsSection />
@@ -58,6 +60,8 @@ function App() {
         <Route path="/login" element={<><Navbar /><LoginPage /><Footer /></>} />
         <Route path="/cart" element={<><Navbar /><CartPage /><Footer /></>} />
         <Route path="/dashboard" element={<><Navbar /><UserDashboard /><Footer /></>} />
+        <Route path="/bilgi/zekat" element={<><Navbar /><ZekatPage /><Footer /></>} />
+        <Route path="/bilgi/fitre" element={<><Navbar /><FitrePage /><Footer /></>} />
       </Routes>
     </HashRouter>
   );

@@ -140,7 +140,20 @@ IBAN: TR33 0001 0002 3456 7890 1234 56`;
               </Link>
             </div>
           </li>
-          <li>Blog <i className="fas fa-chevron-down"></i></li>
+
+          <li className="dropdown-menu">
+            <span className="navbar-link">Bilgi <i className="fas fa-chevron-down"></i></span>
+            <div className="dropdown-content">
+              <Link to="/bilgi/zekat" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-mosque"></i>
+                <span>Zekat Nedir?</span>
+              </Link>
+              <Link to="/bilgi/fitre" onClick={() => setIsMobileMenuOpen(false)}>
+                <i className="fas fa-gift"></i>
+                <span>Fitre Nedir?</span>
+              </Link>
+            </div>
+          </li>
           <li>İletişim</li>
         </ul>
         <div className="navbar-menu-actions">
